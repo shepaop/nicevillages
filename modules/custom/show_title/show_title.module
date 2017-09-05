@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Module Show Title.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\Entity\NodeType;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function show_title_entity_extra_field_info() {
+
+  $extra = [];
+
+  // Nodes.
+  foreach (NodeType::loadMultiple() as $bundle) {
+    $extra['node'][$bundle->id()]['display']['show_title'] = [
+      'label' => t('Title'),
+      'description' => t('Show Title'),
+      'weight' => 100,
+      'visible' => TRUE,
+    ];
+  }
+
+  // Taxonomy terms.
+  foreach (Term::loadMultiple() as $term) {
+    $extra['taxonomy_term'][$term->bundle()]['display']['show_title'] = [
+      'label' => t('Name'),
+      'description' => t('Show Name'),
+      'weight' => 100,
+      'visible' => TRUE,
+    ];
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function show_title_node_view(
+  array &$build,
+  EntityInterface $node,
+  EntityViewDisplayInterface $display,
+  $view_mode) {
+
+  if ($display->getComponent('show_title')) {
+    $build['show_title'] = [
+      '#type' => 'markup',
+      '#markup' => $node->getTitle(),
+    ];
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function show_title_taxonomy_term_view(
+  array &$build,
+  EntityInterface $taxonomy_term,
+  EntityViewDisplayInterface $display,
+  $view_mode) {
+
+  if ($display->getComponent('show_title')) {
+    $build['show_title'] = [
+      '#type' => 'markup',
+      '#markup' => $taxonomy_term->getName(),
+    ];
+  }
+}

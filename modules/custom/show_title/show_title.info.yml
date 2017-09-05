@@ -1,0 +1,6 @@
+name: Show Title
+description: Create Title Extrafield to replace native Node Title.
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Insign
