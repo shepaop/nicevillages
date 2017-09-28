@@ -3,6 +3,7 @@ global-styling:
   css:
     base:
       css/base/elements.css: {}
+      'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css': { external: true }
     component:
       css/components/block.css: {}
       css/components/book.css: {}
@@ -60,6 +61,14 @@ global-styling:
     theme:
       css/colors.css: {}
       css/print.css: { media: print }
+  js:
+    'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js': { external: true }
+    js/animated-scroll-to.js: {}
+    js/get-viewport-width.js: {}
+    js/clone-object.js: {}
+    js/cfg-manager.js: {}
+    js/get-datas-from-html.js: {}
+    js/map-view.js: {}
 
 messages:
   version: VERSION
