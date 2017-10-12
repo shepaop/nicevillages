@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\Core\Asset\AttachedAssetsInterface;
+
+/**
+ * @file
+ * Functions to support theming in the newco theme.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function opera_preprocess_page(&$variables) {
+
+  // Header DOM element CSS classes
+  $variables['header_cssclassnames'] = 'site-header';
+
+  $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+  $is_node_type_master = FALSE;
+  if(!empty($variables['node'])){
+    $is_node_type_master = $variables['node']->getType() == 'master' ? TRUE : FALSE;
+  }
+
+  if ($is_front_page) {
+    $variables['header_cssclassnames'] .= ' alternate';
+  }
+  if ($is_node_type_master) {
+    $variables['header_cssclassnames'] .= ' alternate master';
+  }
+}
+
+/**
+ * Implements hook_js_settings_alter().
+ */
+function opera_js_settings_alter(&$settings, AttachedAssetsInterface $assets) {
+  unset($settings['data']['extlink']['extClass']);
+}

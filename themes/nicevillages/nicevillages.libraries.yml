@@ -1,0 +1,12 @@
+global_styling:
+  version: VERSION
+  css:
+    theme:
+      css/styles.min.css: { media: all }
+      css/print.min.css: { media: print }
+  js:
+    js/modernizr.min.js: {}
+    js/functions.min.js: {}
+    js/gb.js: {}
+  dependencies:
+    - core/jquery
