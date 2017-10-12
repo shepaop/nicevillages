@@ -10,3 +10,4 @@ global_styling:
     js/gb.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.ui

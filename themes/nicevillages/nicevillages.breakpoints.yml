@@ -1,18 +1,24 @@
-newco.mobile:
-  label: mobile
+nicevillages.mobile:
+  label: Mobile
   mediaQuery: ''
   weight: 0
   multipliers:
     - 1x
-newco.tablet:
-  label: tablet
+nicevillages.tablet:
+  label: Tablet
   mediaQuery: 'all and (min-width: 640px)'
   weight: 1
   multipliers:
     - 1x
-newco.desktop:
-  label: desktop
+nicevillages.desktop:
+  label: Desktop
   mediaQuery: 'all and (min-width: 960px)'
   weight: 2
+  multipliers:
+    - 1x
+nicevillages.desktoplarge:
+  label: Desktop large
+  mediaQuery: 'all and (min-width: 1280px)'
+  weight: 3
   multipliers:
     - 1x
