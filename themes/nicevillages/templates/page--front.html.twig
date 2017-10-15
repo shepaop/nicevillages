@@ -51,9 +51,24 @@
       {{ page.mainmenu }}
     </div>
   {% endif %}
-  {% if page.content %}
-    <div class="one-col">
-      {{ page.content }}
+  {% if page.home_villages %}
+    <div class="search-villages">
+      <div class="search-villages--filters map-search">
+        <div class="map-search--aside">
+          <div class="map-filters">
+            <h2 class="map-filters--title">
+              Search<span class="map-filters--smaller">for a village</span>
+            </h2>
+            <div class="map-filters--form">
+              {{ page.home_filters }}
+            </div>
+          </div>
+        </div>
+        <div class="map-search--section"></div>
+      </div>
+      <div class="search-villages--content">
+        {{ page.home_villages }}
+      </div>
     </div>
   {% endif %}
   {% if page.footer %}

@@ -2,9 +2,11 @@ global_styling:
   version: VERSION
   css:
     theme:
+      'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css': { external: true }
       css/styles.min.css: { media: all }
       css/print.min.css: { media: print }
   js:
+    'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js': { external: true }
     js/modernizr.min.js: {}
     js/functions.min.js: {}
     js/gb.js: {}

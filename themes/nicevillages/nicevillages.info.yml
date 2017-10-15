@@ -12,16 +12,12 @@ libraries:
 ckeditor_stylesheets:
   - css/edit.min.css
 regions:
-  pre_header: Pre Header
   header: Header
-  left_sidebar: Left sidebar
-  content_before: Content before
+  mainmenu: Main Menu
   content: Content
-  search: Search
-  footer_before_one: Footer before one
-  footer_before_two: Footer before two
   footer: Footer
-  footer_legal: Footer legal
+  home_filters: Home Filters
+  home_villages: Home Villages
 
 libraries-override:
   core/html5shiv: false
