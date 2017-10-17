@@ -84,9 +84,11 @@
       </h2>
       <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
       <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+      {% if content.field_labels is defined and content.field_labels|render|striptags|trim %}
       <p class="teaser-village--labels">
         {{ content.field_labels }}
       </p>
+      {% endif %}
     </div>
   </div>
 </div>

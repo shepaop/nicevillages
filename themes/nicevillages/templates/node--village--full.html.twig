@@ -1,0 +1,232 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+
+<div class="heading-village">
+  <ul class="heading-village--actions">
+    <li><a rel="nofollow" href="{{ language.getId() }}/node/{{ node.id }}/edit" class="button-contribute">{{ 'Edit'|t }}</a></li>
+    <li><a rel="nofollow" href="{{ language.getId() }}/node/{{ node.id }}/translations" class="button-contribute">{{ 'Translate'|t }}</a></li>
+  </ul>
+  <div class="heading-village--picture">
+    <ul>
+      {% for key, picture in content.field_pictures if key|first != '#' %}
+      <li>
+        {{ picture }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="heading-village--overlay">
+    <div class="heading-village--title">
+      <h1>
+        {{ label }}&nbsp;{% if content.field_country %}<span class="heading-village--flag">{{ content.field_country }}</span>{% endif %}
+      </h1>
+    </div>
+    <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
+    <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+    {% if content.field_labels is defined and content.field_labels|render|striptags|trim %}
+    <p class="heading-village--labels">
+      {{ content.field_labels }}
+    </p>
+    {% endif %}
+    <p class="heading-village--itinerary">
+      <a href="https://www.google.fr/maps/dir//{{ node.field_latitude.value }},{{ node.field_longitude.value }}/@{{ node.field_latitude.value }},{{ node.field_longitude.value }},12z" target=_blank" class="button-action itinerary">{{ 'Itinerary'|t }}</a>
+    </p>
+  </div>
+</div>
+<div class="two-cols">
+  <section class="two-cols--section">
+    <ul class="content-tab-system">
+      <li>
+        <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }}</h2>
+        <div class="content-tab-system--section">
+          {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
+          <div class="map-pois">
+            <div class="map-pois--map">
+              <div class="ajax-loader"></div>
+            </div>
+            <div class="map-pois--content">
+              <div class="light-list">
+                <ul class="light-list--list">
+                  {% for key, poi in content.field_points_of_interest if key|first != '#' %}
+                  <li>
+                    {{ poi }}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="wysiwyg">
+            <p class="text-center-from-mobile">
+              {{ 'No points of interest for the moment'|t }}
+            </p>
+          </div>
+          <p class="text-center-from-mobile">
+            <a href="#" class="button-contribute">{{ 'Add point of interest'|t }}</a>
+          </p>
+          {% endif %}
+        </div>
+      </li>
+      <li>
+        <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
+        <div class="content-tab-system--section">
+          {% if content.body is defined and content.body|render|striptags|trim %}
+          <div class="wysiwyg">
+            {{ content.body }}
+          </div>
+          {% else %}
+          <div class="wysiwyg">
+            <p class="text-center-from-mobile">
+              {{ 'No description for the moment'|t }}
+            </p>
+          </div>
+          <p class="text-center-from-mobile">
+            <a href="#" class="button-contribute">{{ 'Add description'|t }}</a>
+          </p>
+          {% endif %}
+        </div>
+      </li>
+      <li>
+        <h2 class="content-tab-system--heading urls">{{ node.field_usefull_links.fieldDefinition.label }}</h2>
+        <div class="content-tab-system--section">
+          {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
+          <div class="light-list">
+            <ul class="light-list--list">
+              {% for key, link in content.field_usefull_links if key|first != '#' %}
+              <li>
+                <div class="teaser-light">
+                  <h2 class="teaser-light--title">{{ link }}</h2>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% else %}
+            <div class="wysiwyg">
+              <p class="text-center-from-mobile">
+                {{ 'No usefull links for the moment'|t }}
+              </p>
+            </div>
+            <p class="text-center-from-mobile">
+              <a href="#" class="button-contribute">{{ 'Add link'|t }}</a>
+            </p>
+          {% endif %}
+        </div>
+      </li>
+      <li>
+        <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }}</h2>
+        <div class="content-tab-system--section">
+          {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
+          <div class="list-villages">
+            <ul class="list-villages--list">
+              {% for key, village in content.field_related_villages if key|first != '#' %}
+              <li class="list-villages--item">
+                {{ village }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% else %}
+          <div class="wysiwyg">
+            <p class="text-center-from-mobile">
+              {{ 'No related villages for the moment'|t }}
+            </p>
+          </div>
+          <p class="text-center-from-mobile">
+            <a href="#" class="button-contribute">{{ 'Add related village'|t }}</a>
+          </p>
+          {% endif %}
+        </div>
+      </li>
+      <li>
+        <h2 class="content-tab-system--heading comments">{{ node.field_comments.fieldDefinition.label }}</h2>
+        <div class="content-tab-system--section">
+          {% if content.field_comments is defined and content.field_comments|render|striptags|trim %}
+          {{ content.field_comments }}
+          {% else %}
+          <div class="wysiwyg">
+            <p class="text-center-from-mobile">
+              {{ 'No comments for the moment'|t }}
+            </p>
+          </div>
+          <p class="text-center-from-mobile">
+            <a href="#" class="button-contribute">{{ 'Add comment'|t }}</a>
+          </p>
+          {% endif %}
+        </div>
+      </li>
+    </ul>
+  </section>
+  <aside class="two-cols--aside"></aside>
+</div>
