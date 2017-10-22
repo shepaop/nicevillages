@@ -12,7 +12,6 @@ libraries:
 ckeditor_stylesheets:
   - css/edit.min.css
 regions:
-  header: Header
   mainmenu: Main Menu
   content: Content
   footer: Footer
