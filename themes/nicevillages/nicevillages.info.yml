@@ -13,8 +13,10 @@ ckeditor_stylesheets:
   - css/edit.min.css
 regions:
   mainmenu: Main Menu
+  mainmenu_socials: Main Menu Socials
   content: Content
   footer: Footer
+  footer2: Footer2
   home_filters: Home Filters
   home_villages: Home Villages
 
