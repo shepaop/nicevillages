@@ -8,11 +8,37 @@
           <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
         </div>
       </div>
-      <nav class="main-menu--content">
-        {{ page.mainmenu }}
+      <nav role="navigation" class="main-menu--content">
+        <div class="main-menu--search">
+          {{ page.mainmenu_search }}
+        </div>
+        <ul class="main-menu--menu">
+          <li>
+            <span>{{ 'Villages by country'|t }}</span>
+            <div class="menu-simple inlined">
+              {{ page.mainmenu }}
+            </div>
+          </li>
+          <li>
+            <span>{{ 'Villages by label'|t }}</span>
+            <div class="menu-simple inlined">
+              {{ page.mainmenu2 }}
+            </div>
+          </li>
+        </ul>
+        <div class="main-menu--menu">
+          {{ page.mainmenu3 }}
+        </div>
       </nav>
       <div class="main-menu--footer">
-        {{ page.mainmenu_socials }}
+        <ul class="menu-social {$modifiers}">
+          <li class="facebook"><a href="#">{{ 'Facebook'|t }}</a></li>
+          <li class="twitter"><a href="#">{{ 'Twitter'|t }}</a></li>
+          <li class="instagram"><a href="#">{{ 'Instagram'|t }}</a></li>
+          <li class="pinterest"><a href="#">{{ 'Pinterest'|t }}</a></li>
+          <li class="googleplus"><a href="#">{{ 'Google plus'|t }}</a></li>
+          <li class="rss"><a href="#">{{ 'RSS'|t }}</a></li>
+        </ul>
       </div>
     </div>
   </div>

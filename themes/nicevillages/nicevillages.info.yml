@@ -12,8 +12,10 @@ libraries:
 ckeditor_stylesheets:
   - css/edit.min.css
 regions:
+  mainmenu_search: Main Search
   mainmenu: Main Menu
-  mainmenu_socials: Main Menu Socials
+  mainmenu2: Main Menu 2
+  mainmenu3: Main Menu 3
   content: Content
   footer: Footer
   footer2: Footer2
