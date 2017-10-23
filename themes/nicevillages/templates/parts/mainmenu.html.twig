@@ -1,0 +1,19 @@
+{% if page.mainmenu %}
+  <div class="main-menu">
+    <div class="main-menu--overlay"></div>
+    <div class="main-menu--panel">
+      <div class="main-menu--header">
+        <div class="site-branding small">
+          <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
+          <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
+        </div>
+      </div>
+      <nav class="main-menu--content">
+        {{ page.mainmenu }}
+      </nav>
+      <div class="main-menu--footer">
+        {{ page.mainmenu_socials }}
+      </div>
+    </div>
+  </div>
+{% endif %}

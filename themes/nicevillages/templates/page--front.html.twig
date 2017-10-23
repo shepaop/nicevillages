@@ -41,41 +41,8 @@
 #}
 
 <div class="container">
-  <header class="site-header">
-    <div class="site-header--brand">
-      <h1 class="site-branding">
-        <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
-        <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
-      </h1>
-    </div>
-    <div class="site-header--left">
-      <a rel="nofollow" href="{{ path('node.add', {'node_type' : 'village'}) }}" class="button-contribute">{{ 'Add a new village'|t }}</a>
-    </div>
-    <div class="site-header--right">
-      <div class="burger-menu--trigger">{{ 'Menu'|t }}</div>
-      <a rel="nofollow" href="{{ path('user.login') }}" class="site-header--register">{{ 'Sign in'|t }}</a>
-      <a rel="nofollow" href="{{ path('user.register') }}" class="button-contribute">{{ 'Sign up'|t }}</a>
-    </div>
-  </header>
-  {% if page.mainmenu %}
-    <div class="main-menu">
-      <div class="main-menu--overlay"></div>
-      <div class="main-menu--panel">
-        <div class="main-menu--header">
-          <div class="site-branding small">
-            <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
-            <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
-          </div>
-        </div>
-        <div class="main-menu--content">
-          {{ page.mainmenu }}
-        </div>
-        <div class="main-menu--footer">
-          {{ page.mainmenu_socials }}
-        </div>
-      </div>
-    </div>
-  {% endif %}
+  {% include '@nicevillages/parts/header.html.twig' %}
+  {% include '@nicevillages/parts/mainmenu.html.twig' %}
   {% if page.home_villages %}
     <div class="search-villages">
       <div class="search-villages--filters map-search">
@@ -96,21 +63,6 @@
       </div>
     </div>
   {% endif %}
-  {% if page.footer %}
-    <footer class="site-footer">
-      <div class="site-footer--main">
-        {{ page.footer }}
-      </div>
-      <div class="site-footer--aside">
-        {{ page.footer2 }}
-      </div>
-      <div class="site-footer--brand">
-        <div class="site-branding small">
-          <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
-          <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
-        </div>
-      </div>
-    </footer>
-  {% endif %}
+  {% include '@nicevillages/parts/footer.html.twig' %}
 </div>
 

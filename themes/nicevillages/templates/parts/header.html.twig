@@ -1,0 +1,16 @@
+<header role="banner" class="site-header">
+  <div class="site-header--brand">
+    <h1 class="site-branding">
+      <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
+      <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
+    </h1>
+  </div>
+  <div class="site-header--left">
+    <a rel="nofollow" href="{{ path('node.add', {'node_type' : 'village'}) }}" class="button-contribute">{{ 'Add a new village'|t }}</a>
+  </div>
+  <div class="site-header--right">
+    <div class="burger-menu--trigger">{{ 'Menu'|t }}</div>
+    <a rel="nofollow" href="{{ path('user.login') }}" class="site-header--register">{{ 'Sign in'|t }}</a>
+    <a rel="nofollow" href="{{ path('user.register') }}" class="button-contribute">{{ 'Sign up'|t }}</a>
+  </div>
+</header>

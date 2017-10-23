@@ -1,0 +1,16 @@
+{% if page.footer %}
+  <footer role="contentinfo" class="site-footer">
+    <div class="site-footer--main">
+      {{ page.footer }}
+    </div>
+    <div class="site-footer--aside">
+      {{ page.footer2 }}
+    </div>
+    <div class="site-footer--brand">
+      <div class="site-branding small">
+        <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
+        <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
+      </div>
+    </div>
+  </footer>
+{% endif %}

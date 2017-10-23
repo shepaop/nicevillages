@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+<div class="container">
+
+  <header role="banner" class="site-header">
+    <div class="site-header--brand">
+      <h1 class="site-branding">
+        <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
+        <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
+      </h1>
+    </div>
+    <div class="site-header--left"></div>
+    <div class="site-header--right"></div>
+  </header>
+
+  {% if page.content %}
+    <main role="main" class="one-col">
+      {{ page.content }}
+    </main>
+  {% endif %}
+
+</div>{# /.layout-container #}
