@@ -93,7 +93,7 @@
     </div>
     <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
     <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
-    {% if content.field_labels is defined and content.field_labels|render|striptags|trim %}
+    {% if content.field_labels is defined and content.field_labels|render|trim %}
     <p class="heading-village--labels">
       {{ content.field_labels }}
     </p>
@@ -128,7 +128,7 @@
           </div>
           {% else %}
           <div class="wysiwyg">
-            <p class="text-center-from-mobile">
+            <p class="text-center-from-mobile padder">
               {{ 'No points of interest for the moment'|t }}
             </p>
           </div>
@@ -147,7 +147,7 @@
           </div>
           {% else %}
           <div class="wysiwyg">
-            <p class="text-center-from-mobile">
+            <p class="text-center-from-mobile padder">
               {{ 'No description for the moment'|t }}
             </p>
           </div>
@@ -174,7 +174,7 @@
           </div>
           {% else %}
             <div class="wysiwyg">
-              <p class="text-center-from-mobile">
+              <p class="text-center-from-mobile padder">
                 {{ 'No usefull links for the moment'|t }}
               </p>
             </div>
@@ -199,7 +199,7 @@
           </div>
           {% else %}
           <div class="wysiwyg">
-            <p class="text-center-from-mobile">
+            <p class="text-center-from-mobile padder">
               {{ 'No related villages for the moment'|t }}
             </p>
           </div>
@@ -216,7 +216,7 @@
           {{ content.field_comments }}
           {% else %}
           <div class="wysiwyg">
-            <p class="text-center-from-mobile">
+            <p class="text-center-from-mobile padder">
               {{ 'No comments for the moment'|t }}
             </p>
           </div>

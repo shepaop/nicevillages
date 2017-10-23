@@ -6,3 +6,8 @@ function nicevillages_theme_suggestions_page_alter(array &$suggestions, array $v
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }
 }
+
+function nicevillages_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  array_splice($suggestions, 1, 0, 'taxonomy_term__' . $variables['elements']['name']['#bundle'] . '__' . $sanitized_view_mode);
+}
