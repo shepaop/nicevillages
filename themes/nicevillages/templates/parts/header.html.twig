@@ -1,9 +1,16 @@
 <header role="banner" class="site-header">
   <div class="site-header--brand">
-    <h1 class="site-branding">
+    {% if is_front %}
+    <div class="site-branding">
+      <h1 class="site-branding--name">{{ 'Nice Villages'|t }}</h1>
+      <h2 class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</h2>
+    </div>
+    {% else %}
+    <a href="{{ path('<front>') }}" class="site-branding">
       <span class="site-branding--name">{{ 'Nice Villages'|t }}</span>
       <span class="site-branding--baseline">{{ 'Explore villages that are worth seeing'|t }}</span>
-    </h1>
+    </a>
+    {% endif %}
   </div>
   <div class="site-header--left">
     <a rel="nofollow" href="{{ path('node.add', {'node_type' : 'village'}) }}" class="button-contribute">{{ 'Add a new village'|t }}</a>

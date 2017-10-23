@@ -26,7 +26,8 @@
 <div class="content-tab-system content-tab-system--section no-padding-bottom">
   <div class="heading-village--title">
     <h1>
-      {{ 'The most beautifull villages of' }} {{ name }}&nbsp;<span class="heading-village--flag">{{ content.field_logo }}</span>
+      {{ name }}&nbsp;<span class="heading-village--flag">{{ content.field_logo }}</span><br />
+      {{ 'The most beautifull villages of' }}
     </h1>
   </div>
   {% if content.description is defined and content.description|render|striptags|trim %}
