@@ -16,6 +16,7 @@ regions:
   mainmenu: Main Menu
   mainmenu2: Main Menu 2
   mainmenu3: Main Menu 3
+  mainmenu_footer: Main Footer
   content: Content
   footer: Footer
   footer2: Footer2
