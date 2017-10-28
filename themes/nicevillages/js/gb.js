@@ -1,1 +1,0 @@
-var gb = new Greybox();

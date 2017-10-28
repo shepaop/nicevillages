@@ -1,5 +1,58 @@
 <?php
 
+function nicevillages_preprocess_html(&$variables) {
+
+  $bookingVerify = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'B-verify',
+      'content' => 'fb99e0132eca0cf0620e3c77a773b405edebf2e4',
+    ],
+  ];
+  $variables['page']['#attached']['html_head'][] = [$bookingVerify, 'booking-verify'];
+
+  $addsenseFile = [
+    '#type' => 'html_tag',
+    '#tag' => 'script',
+    '#attributes' => array(
+      'src' => '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+      'async' => TRUE
+    ),
+  ];
+  $variables['page']['#attached']['html_head'][] = [$addsenseFile, 'addsense-file'];
+
+  $addsenseScript = [
+    '#type' => 'html_tag',
+    '#tag' => 'script',
+    '#value' => '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-9988156190115859",enable_page_level_ads: true});',
+  ];
+  $variables['page']['#attached']['html_head'][] = [$addsenseScript, 'addsense-script'];
+}
+
+function nicevillages_page_attachments(array &$attachments) {
+  $attachments['#attached']['html_head'][] = [
+    // The data.
+    [
+      '#type' => 'html_tag',
+      // The HTML tag to add, in this case a  tag.
+      '#tag' => 'script',
+      // The value of the HTML tag, here we want to end up with
+      // alert("Hello world!");.
+      '#value' => 'alert("Hello world!");',
+      // Set attributes like src to load a file.
+      '#attributes' => array('src' => ''),
+
+    ],
+    // A key, to make it possible to recognize this HTML  element when altering.
+    'hello-world',
+  ];
+}
+
+function nicevillages_preprocess_node(&$variables) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['langcode'] = $language;
+}
+
 function nicevillages_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
   if ($node = \Drupal::request()->attributes->get('node')) {

@@ -9,7 +9,6 @@ global_styling:
     'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js': { external: true }
     js/modernizr.min.js: {}
     js/functions.min.js: {}
-    js/gb.js: {}
   dependencies:
     - core/jquery
     - core/jquery.ui.slider
