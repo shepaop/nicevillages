@@ -1,0 +1,22 @@
+<div class="teaser-village">
+  <a{{ target }} href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="teaser-village--content">
+    <div class="teaser-village--picture">
+      {{ content.field_pictures.0 }}
+    </div>
+    <div class="teaser-village--overlay">
+      <h2 class="teaser-village--title">
+        {{ label }}&nbsp;{% if content.field_country %}<span class="teaser-village--flag">{{ content.field_country }}</span>{% endif %}
+      </h2>
+      <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
+      <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+      {% if content.field_labels is defined and content.field_labels|render|trim %}
+        <p class="teaser-village--labels">
+          {{ content.field_labels }}
+        </p>
+      {% endif %}
+    </div>
+  </a>
+  <div class="inline-actions">
+    <a{{ target }} href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="button-action">{{ 'Discover'|t }}</a>
+  </div>
+</div>

@@ -10,23 +10,6 @@ function nicevillages_preprocess_html(&$variables) {
     ],
   ];
   $variables['page']['#attached']['html_head'][] = [$bookingVerify, 'booking-verify'];
-
-  $addsenseFile = [
-    '#type' => 'html_tag',
-    '#tag' => 'script',
-    '#attributes' => array(
-      'src' => '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-      'async' => TRUE
-    ),
-  ];
-  $variables['page']['#attached']['html_head'][] = [$addsenseFile, 'addsense-file'];
-
-  $addsenseScript = [
-    '#type' => 'html_tag',
-    '#tag' => 'script',
-    '#value' => '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-9988156190115859",enable_page_level_ads: true});',
-  ];
-  $variables['page']['#attached']['html_head'][] = [$addsenseScript, 'addsense-script'];
 }
 
 function nicevillages_page_attachments(array &$attachments) {
