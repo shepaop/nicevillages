@@ -86,7 +86,6 @@
     {{ user_picture }}
     <p class="comment__author">{{ author }}</p>
     <p class="comment__time">{{ created }}</p>
-    <p class="comment__permalink">{{ permalink }}</p>
     {#
       Indicate the semantic relationship between parent and child comments
       for accessibility. The list is difficult to navigate in a screen
@@ -100,7 +99,8 @@
   <div{{ content_attributes.addClass('comment__content') }}>
     {% if title %}
       {{ title_prefix }}
-      <h3{{ title_attributes }}>{{ 'Note'|t }}: {{ content.field_note }}/5 - {{ title }}</h3>
+      <h2{{ title_attributes }}>{{ 'Note'|t }}: {{ content.field_note }}/5</h2>
+      <h3{{ title_attributes }}>{{ title|striptags }}</h3>
       {{ title_suffix }}
     {% endif %}
     {{ content.field_comment }}
