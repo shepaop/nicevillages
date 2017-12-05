@@ -1,14 +1,17 @@
-<div class="teaser-village">
+<div class="teaser-village" itemscope itemtype="http://schema.org/City">
   <a{{ target }} href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="teaser-village--content">
-    <div class="teaser-village--picture">
+    <div class="teaser-village--picture" itemprop="image" itemscope  itemtype="http://schema.org/ImageObject">
+      <meta itemprop="contentUrl" content="{{ file_url(node.field_pictures.entity.uri.value) }}" />
       {{ content.field_pictures.0 }}
     </div>
     <div class="teaser-village--overlay">
       <h2 class="teaser-village--title">
-        {{ label }}&nbsp;{% if content.field_country %}<span class="teaser-village--flag">{{ content.field_country }}</span>{% endif %}
+        <span itemprop="name">{{ label }}</span>&nbsp;{% if content.field_country %}<span class="teaser-village--flag">{{ content.field_country }}</span>{% endif %}
       </h2>
-      <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
-      <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+      <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+        <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
+        <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+      </div>
       {% if content.field_labels is defined and content.field_labels|render|trim %}
         <p class="teaser-village--labels">
           {{ content.field_labels }}
