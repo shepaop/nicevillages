@@ -12,10 +12,19 @@
         <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
         <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
       </div>
-      {% if content.field_labels is defined and content.field_labels|render|trim %}
-        <p class="teaser-village--labels">
-          {{ content.field_labels }}
+      {% if comment_count > 0 %}
+      <div class="teaser-village--rating">
+        <p class="five-stars {{ note_css_class }}" itemprop="rating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span class="five-stars--star"></span>
+          <span class="five-stars--star"></span>
+          <span class="five-stars--star"></span>
+          <span class="five-stars--star"></span>
+          <span class="five-stars--star"></span>
+          <meta itemprop="ratingValue" content="{{ node.field_note.value }}" />
+          <meta itemprop="bestRating" content="5" />
+          <meta itemprop="ratingCount" content="{{ comment_count }}" />
         </p>
+      </div>
       {% endif %}
     </div>
   </a>
