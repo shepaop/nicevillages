@@ -1,0 +1,6 @@
+name: Village Comment Notation
+description: Calculate Village Notation based on comment note average
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Nice Villages

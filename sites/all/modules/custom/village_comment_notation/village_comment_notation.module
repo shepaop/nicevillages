@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Module village_comment_notation
+ */
+
+use Drupal\comment\Entity\Comment;
+
+/**
+ * Implements hook_cron().
+ */
+function village_comment_notation_cron() {
+
+  $entities = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties(['type' => 'village']);
+  foreach ($entities as $entity) {
+
+    $nid = $entity->get('nid')->getValue()[0]['value'];
+
+    $cids = \Drupal::entityQuery('comment')
+      ->condition('entity_id', $nid)
+      ->condition('entity_type', 'node')
+      ->execute();
+
+    if (count($cids) > 0) {
+
+      $notes = 0;
+
+      foreach ($cids as $cid) {
+
+        $comment = Comment::load($cid);
+
+        $notes += floatval($comment->get('field_note')->getValue()[0]['value']);
+      }
+
+      $rounded_note = round($notes * 2 / count($cids)) / 2;
+
+      $entity->set('field_note', $rounded_note);
+      $entity->setNewRevision(FALSE);
+      $entity->save();
+    }
+  }
+
+  drupal_set_message(t('village_comment_notation executed at %time', array('%time' => date_iso8601(time(0)))));
+}
