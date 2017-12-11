@@ -41,6 +41,11 @@ function village_comment_notation_cron() {
       $entity->setNewRevision(FALSE);
       $entity->save();
     }
+    else {
+      $entity->set('field_note', 1);
+      $entity->setNewRevision(FALSE);
+      $entity->save();
+    }
   }
 
   drupal_set_message(t('village_comment_notation executed at %time', array('%time' => date_iso8601(time(0)))));
