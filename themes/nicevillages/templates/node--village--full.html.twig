@@ -71,162 +71,176 @@
  */
 #}
 
-<div class="heading-village">
-  <ul class="heading-village--actions">
-    <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Edit'|t }}</a></li>
-    <li><a rel="nofollow" href="/node/translations" class="button-contribute">{{ 'Translate'|t }}</a></li>
-  </ul>
-  <div class="heading-village--picture">
-    <ul>
-      {% for key, picture in content.field_pictures if key|first != '#' %}
-      <li>
-        {{ picture }}
-      </li>
-      {% endfor %}
+<div itemscope itemtype="http://schema.org/City">
+  <div class="heading-village">
+    <ul class="heading-village--actions">
+      <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Edit'|t }}</a></li>
+      <li><a rel="nofollow" href="/node/{{ node.id }}/translations" class="button-contribute">{{ 'Translate'|t }}</a></li>
     </ul>
-  </div>
-  <div class="heading-village--overlay">
-    <div class="heading-village--title">
-      <h1>
-        {{ label }}&nbsp;{% if content.field_country %}<span class="heading-village--flag">{{ content.field_country }}</span>{% endif %}
-      </h1>
+    <div class="heading-village--picture" itemprop="image" itemscope  itemtype="http://schema.org/ImageObject">
+      <meta itemprop="contentUrl" content="{{ file_url(node.field_pictures.entity.uri.value) }}" />
+      <ul>
+        {% for key, picture in content.field_pictures if key|first != '#' %}
+        <li>
+          {{ picture }}
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
-    <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
-    {% if content.field_labels is defined and content.field_labels|render|trim %}
-    <p class="heading-village--labels">
-      {{ content.field_labels }}
-    </p>
-    {% endif %}
-    <p class="heading-village--itinerary">
-      <a href="https://www.google.fr/maps/dir//{{ node.field_latitude.value }},{{ node.field_longitude.value }}/@{{ node.field_latitude.value }},{{ node.field_longitude.value }},12z" target=_blank" class="button-action itinerary">{{ 'Itinerary'|t }}</a>
-    </p>
+    <div class="heading-village--overlay">
+      <div class="heading-village--title">
+        <h1>
+          <span itemprop="name">{{ label }}</span>&nbsp;{% if content.field_country %}<span class="heading-village--flag">{{ content.field_country }}</span>{% endif %}
+        </h1>
+      </div>
+      <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+        <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
+        <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
+      </div>
+      {% if comment_count > 0 %}
+        <div class="heading-village--rating" data-comment-count="{{ comment_count }}">
+          <p class="five-stars {{ note_css_class }}" itemprop="rating" itemscope itemtype="http://schema.org/AggregateRating">
+            <span class="five-stars--star"></span>
+            <span class="five-stars--star"></span>
+            <span class="five-stars--star"></span>
+            <span class="five-stars--star"></span>
+            <span class="five-stars--star"></span>
+            <meta itemprop="ratingValue" content="{{ node.field_note.value }}" />
+            <meta itemprop="bestRating" content="5" />
+            <meta itemprop="ratingCount" content="{{ comment_count }}" />
+          </p>
+        </div>
+      {% endif %}
+      <p class="heading-village--itinerary">
+        <a href="https://www.google.fr/maps/dir//{{ node.field_latitude.value }},{{ node.field_longitude.value }}/@{{ node.field_latitude.value }},{{ node.field_longitude.value }},12z" target=_blank" class="button-action itinerary">{{ 'Itinerary'|t }}</a>
+      </p>
+    </div>
   </div>
-</div>
-<div class="two-cols">
-  <section class="two-cols--section">
-    <ul class="content-tab-system">
-      <li>
-        <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }}</h2>
-        <div class="content-tab-system--section">
-          {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
-          <div class="map-pois">
-            <div class="map-pois--map">
-              <div class="ajax-loader"></div>
-            </div>
-            <div class="map-pois--content">
-              <div class="light-list">
-                <ul class="light-list--list">
-                  {% for key, poi in content.field_points_of_interest if key|first != '#' %}
-                  <li>
-                    {{ poi }}
-                  </li>
-                  {% endfor %}
-                </ul>
+  <div class="two-cols">
+    <section class="two-cols--section">
+      <ul class="content-tab-system">
+        <li>
+          <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
+            <div class="map-pois">
+              <div class="map-pois--map">
+                <div class="ajax-loader"></div>
+              </div>
+              <div class="map-pois--content">
+                <div class="light-list">
+                  <ul class="light-list--list">
+                    {% for key, poi in content.field_points_of_interest if key|first != '#' %}
+                    <li>
+                      {{ poi }}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          {% else %}
-          <div class="wysiwyg">
-            <p class="text-center-from-mobile padder">
-              {{ 'No points of interest for the moment'|t }}
-            </p>
-          </div>
-          <p class="text-center-from-mobile">
-            <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add point of interest'|t }}</a>
-          </p>
-          {% endif %}
-        </div>
-      </li>
-      <li>
-        <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
-        <div class="content-tab-system--section">
-          {% if content.body is defined and content.body|render|striptags|trim %}
-          <div class="wysiwyg">
-            {{ content.body }}
-          </div>
-          {% else %}
-          <div class="wysiwyg">
-            <p class="text-center-from-mobile padder">
-              {{ 'No description for the moment'|t }}
-            </p>
-          </div>
-          <p class="text-center-from-mobile">
-            <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add description'|t }}</a>
-          </p>
-          {% endif %}
-        </div>
-      </li>
-      <li>
-        <h2 class="content-tab-system--heading urls">{{ node.field_usefull_links.fieldDefinition.label }}</h2>
-        <div class="content-tab-system--section">
-          {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
-          <div class="light-list">
-            <ul class="light-list--list">
-              {% for key, link in content.field_usefull_links if key|first != '#' %}
-              <li>
-                <div class="teaser-light">
-                  <h2 class="teaser-light--title">{{ link }}</h2>
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          {% else %}
+            {% else %}
             <div class="wysiwyg">
               <p class="text-center-from-mobile padder">
-                {{ 'No usefull links for the moment'|t }}
+                {{ 'No points of interest for the moment'|t }}
               </p>
             </div>
             <p class="text-center-from-mobile">
-              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add link'|t }}</a>
+              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add point of interest'|t }}</a>
             </p>
-          {% endif %}
-        </div>
-      </li>
-      <li>
-        <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }}</h2>
-        <div class="content-tab-system--section">
-          {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
-          <div class="list-villages">
-            <ul class="list-villages--list">
-              {% for key, village in content.field_related_villages if key|first != '#' %}
-              <li class="list-villages--item">
-                {{ village }}
-              </li>
-              {% endfor %}
-            </ul>
+            {% endif %}
           </div>
-          {% else %}
-          <div class="wysiwyg">
-            <p class="text-center-from-mobile padder">
-              {{ 'No related villages for the moment'|t }}
+        </li>
+        <li>
+          <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.body is defined and content.body|render|striptags|trim %}
+            <div class="wysiwyg">
+              {{ content.body }}
+            </div>
+            {% else %}
+            <div class="wysiwyg">
+              <p class="text-center-from-mobile padder">
+                {{ 'No description for the moment'|t }}
+              </p>
+            </div>
+            <p class="text-center-from-mobile">
+              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add description'|t }}</a>
             </p>
+            {% endif %}
           </div>
-          <p class="text-center-from-mobile">
-            <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add related village'|t }}</a>
-          </p>
-          {% endif %}
-        </div>
-      </li>
-      <li>
-        <h2 class="content-tab-system--heading comments">{{ node.field_comments.fieldDefinition.label }}</h2>
-        <div class="content-tab-system--section">
-          {% if content.field_comments is defined and content.field_comments|render|striptags|trim %}
-          {{ content.field_comments }}
-          {% else %}
-          <div class="wysiwyg">
-            <p class="text-center-from-mobile padder">
-              {{ 'No comments for the moment'|t }}
+        </li>
+        <li>
+          <h2 class="content-tab-system--heading urls">{{ node.field_usefull_links.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
+            <div class="light-list">
+              <ul class="light-list--list">
+                {% for key, link in content.field_usefull_links if key|first != '#' %}
+                <li>
+                  <div class="teaser-light">
+                    <h2 class="teaser-light--title">{{ link }}</h2>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+              <div class="wysiwyg">
+                <p class="text-center-from-mobile padder">
+                  {{ 'No usefull links for the moment'|t }}
+                </p>
+              </div>
+              <p class="text-center-from-mobile">
+                <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add link'|t }}</a>
+              </p>
+            {% endif %}
+          </div>
+        </li>
+        <li>
+          <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
+            <div class="list-villages">
+              <ul class="list-villages--list">
+                {% for key, village in content.field_related_villages if key|first != '#' %}
+                <li class="list-villages--item">
+                  {{ village }}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            <div class="wysiwyg">
+              <p class="text-center-from-mobile padder">
+                {{ 'No related villages for the moment'|t }}
+              </p>
+            </div>
+            <p class="text-center-from-mobile">
+              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add related village'|t }}</a>
             </p>
+            {% endif %}
           </div>
-          <p class="text-center-from-mobile">
-            <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add comment'|t }}</a>
-          </p>
-          {% endif %}
-        </div>
-      </li>
-    </ul>
-  </section>
-  {% include '@nicevillages/parts/aside.html.twig' %}
+        </li>
+        <li>
+          <h2 class="content-tab-system--heading comments">{{ node.field_comments.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.field_comments is defined and content.field_comments|render|striptags|trim %}
+            {{ content.field_comments }}
+            {% else %}
+            <div class="wysiwyg">
+              <p class="text-center-from-mobile padder">
+                {{ 'No comments for the moment'|t }}
+              </p>
+            </div>
+            <p class="text-center-from-mobile">
+              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add comment'|t }}</a>
+            </p>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+    </section>
+    {% include '@nicevillages/parts/aside.html.twig' %}
+  </div>
 </div>

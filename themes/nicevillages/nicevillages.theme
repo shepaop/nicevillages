@@ -1,5 +1,12 @@
 <?php
 
+function nicevillages_preprocess_table(&$variables) {
+
+  $variables['attributes']['class'] = array(
+    'admin-table'
+  );
+}
+
 function nicevillages_preprocess_html(&$variables) {
 
   $bookingVerify = [
