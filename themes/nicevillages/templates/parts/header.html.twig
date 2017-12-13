@@ -17,7 +17,11 @@
   </div>
   <div class="site-header--right">
     <div class="burger-menu--trigger">{{ 'Menu'|t }}</div>
-    <a rel="nofollow" href="{{ path('user.login') }}" class="site-header--register">{{ 'Sign in'|t }}</a>
-    <a rel="nofollow" href="{{ path('user.register') }}" class="button-contribute">{{ 'Sign up'|t }}</a>
+    {% if logged_in %}
+      <a class="site-header--username" href="/user/{{ user_id }}">{{ user_name }}</a>
+    {% else %}
+      <a rel="nofollow" href="{{ path('user.login') }}" class="site-header--register">{{ 'Sign in'|t }}</a>
+      <a rel="nofollow" href="{{ path('user.register') }}" class="button-contribute">{{ 'Sign up'|t }}</a>
+    {% endif %}
   </div>
 </header>

@@ -22,6 +22,20 @@ function nicevillages_preprocess_html(&$variables) {
   ];
 }
 
+function nicevillages_preprocess_page(&$variables) {
+
+  $userCurrent = \Drupal::currentUser();
+
+  if ($userCurrent->isAuthenticated()) {
+
+    $uid = $userCurrent->id();
+    $user = \Drupal\user\Entity\User::load($uid);
+
+    $variables['user_name'] = $user->getUsername();
+    $variables['user_id'] = $uid;
+  }
+}
+
 function nicevillages_preprocess_node(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   $variables['langcode'] = $language;
