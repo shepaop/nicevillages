@@ -201,7 +201,7 @@
           <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }}</h2>
           <div class="content-tab-system--section">
             {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
-            <div class="list-villages">
+            <div class="list-villages smaller">
               <ul class="list-villages--list" itemscope itemtype="http://schema.org/isRelatedTo">
                 {% for key, village in content.field_related_villages if key|first != '#' %}
                 <li class="list-villages--item">

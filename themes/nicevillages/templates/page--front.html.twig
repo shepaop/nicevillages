@@ -58,8 +58,13 @@
         </div>
         <div class="map-search--section"></div>
       </div>
-      <div class="search-villages--content">
-        {{ page.home_villages }}
+      <div class="two-cols">
+        <section class="two-cols--section">
+          <div class="search-villages--content">
+            {{ page.home_villages }}
+          </div>
+        </section>
+        {% include '@nicevillages/parts/aside.html.twig' %}
       </div>
     </div>
   {% endif %}
