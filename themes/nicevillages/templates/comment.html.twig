@@ -99,7 +99,7 @@
   <div{{ content_attributes.addClass('comment__content') }}>
     {% if title %}
       {{ title_prefix }}
-      <h2{{ title_attributes }}>{{ 'Note'|t }}: {{ content.field_note }}/5</h2>
+      <h2>{{ 'Note'|t }}: {{ content.field_note }}/5</h2>
       <h3{{ title_attributes }}>{{ title|striptags }}</h3>
       {{ title_suffix }}
     {% endif %}

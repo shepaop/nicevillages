@@ -155,7 +155,7 @@
           <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
           <div class="content-tab-system--section">
             {% if content.body is defined and content.body|render|striptags|trim %}
-            <div class="wysiwyg">
+            <div class="wysiwyg" itemprop="description">
               {{ content.body }}
             </div>
             {% else %}
@@ -175,11 +175,11 @@
           <div class="content-tab-system--section">
             {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
             <div class="light-list">
-              <ul class="light-list--list">
+              <ul class="light-list--list" itemscope itemtype="http://schema.org/relatedLink">
                 {% for key, link in content.field_usefull_links if key|first != '#' %}
                 <li>
                   <div class="teaser-light">
-                    <h2 class="teaser-light--title">{{ link }}</h2>
+                    <h2 class="teaser-light--title" itemprop="URL">{{ link }}</h2>
                   </div>
                 </li>
                 {% endfor %}
@@ -202,7 +202,7 @@
           <div class="content-tab-system--section">
             {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
             <div class="list-villages">
-              <ul class="list-villages--list">
+              <ul class="list-villages--list" itemscope itemtype="http://schema.org/isRelatedTo">
                 {% for key, village in content.field_related_villages if key|first != '#' %}
                 <li class="list-villages--item">
                   {{ village }}

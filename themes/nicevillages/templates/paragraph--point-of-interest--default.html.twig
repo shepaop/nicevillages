@@ -38,13 +38,15 @@
  * @ingroup themeable
  */
 #}
-<div class="teaser-light">
+<div class="teaser-light" itemscope itemtype="http://schema.org/TouristAttraction">
   <div class="teaser-light--actions"></div>
-  <h2 class="teaser-light--title">{{ content.field_name }}</h2>
-  <meta itemprop="latitude" content="{{ paragraph.field_latitude.value }}" />
-  <meta itemprop="longitude" content="{{ paragraph.field_longitude.value }}" />
+  <h2 class="teaser-light--title" itemprop="name">{{ content.field_name }}</h2>
+  <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+    <meta itemprop="latitude" content="{{ paragraph.field_latitude.value }}" />
+    <meta itemprop="longitude" content="{{ paragraph.field_longitude.value }}" />
+  </div>
   {% if content.field_description is defined and content.field_description|render|striptags|trim %}
-  <p class="teaser-light--desc">
+  <p class="teaser-light--desc" itemprop="description">
     {{ content.field_description }}
   </p>
   {% endif %}
