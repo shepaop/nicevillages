@@ -74,6 +74,27 @@
     'clearfix',
   ]
 %}
+{% if content.field_note|nl2br|striptags|trim|raw == "1" %}
+  {% set note_css_class = "onedotzero" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "1.5" %}
+  {% set note_css_class = "onedotfive" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "2" %}
+  {% set note_css_class = "twodotzero" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "2.5" %}
+  {% set note_css_class = "twodotfive" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "3" %}
+  {% set note_css_class = "threedotzero" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "3.5" %}
+  {% set note_css_class = "threedotfive" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "4" %}
+  {% set note_css_class = "fourdotzero" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "4.5" %}
+  {% set note_css_class = "fourdotfive" %}
+{% elseif content.field_note|nl2br|striptags|trim|raw == "5" %}
+  {% set note_css_class = "fivedotzero" %}
+{% else %}
+  {% set note_css_class = "" %}
+{% endif %}
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
@@ -97,12 +118,18 @@
   </footer>
 
   <div{{ content_attributes.addClass('comment__content') }}>
-    {% if title %}
+    <p class="five-stars dark {{ note_css_class }}">
+      <span class="five-stars--star"></span>
+      <span class="five-stars--star"></span>
+      <span class="five-stars--star"></span>
+      <span class="five-stars--star"></span>
+      <span class="five-stars--star"></span>
+    </p>
+    {% if title|striptags|trim != "(No subject)" and title|striptags|trim != "(sans sujet)" %}
       {{ title_prefix }}
-      <h2>{{ 'Note'|t }}: {{ content.field_note }}/5</h2>
-      <h3{{ title_attributes }}>{{ title|striptags }}</h3>
+      <h2{{ title_attributes }}>{{ title|striptags }}</h2>
       {{ title_suffix }}
     {% endif %}
-    {{ content.field_comment }}
+    <p>{{ content.field_comment }}</p>
   </div>
 </article>
