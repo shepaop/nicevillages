@@ -118,9 +118,9 @@
   </div>
   <div class="two-cols">
     <section class="two-cols--section">
-      <ul class="content-tab-system">
-        <li>
-          <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }}</h2>
+      <div class="content-tab-system">
+        <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }} <span class="content-tabs--preview">({{ content.field_points_of_interest['#items'].getValue()|length }})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
             <div class="map-pois">
@@ -150,8 +150,8 @@
             </p>
             {% endif %}
           </div>
-        </li>
-        <li>
+        </div>
+        <div class="content-tab-system--group">
           <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
           <div class="content-tab-system--section">
             {% if content.body is defined and content.body|render|striptags|trim %}
@@ -169,9 +169,9 @@
             </p>
             {% endif %}
           </div>
-        </li>
-        <li>
-          <h2 class="content-tab-system--heading urls">{{ node.field_usefull_links.fieldDefinition.label }}</h2>
+        </div>
+        <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading urls">{{ node.field_usefull_links.fieldDefinition.label }} <span class="content-tabs--preview">({{ content.field_usefull_links['#items'].getValue()|length }})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
             <div class="light-list">
@@ -196,9 +196,9 @@
               </p>
             {% endif %}
           </div>
-        </li>
-        <li>
-          <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }}</h2>
+        </div>
+        <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading related">{{ node.field_related_villages.fieldDefinition.label }} <span class="content-tabs--preview">({{ content.field_related_villages['#items'].getValue()|length }})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
             <div class="list-villages smaller">
@@ -221,9 +221,9 @@
             </p>
             {% endif %}
           </div>
-        </li>
-        <li>
-          <h2 class="content-tab-system--heading comments">{{ node.field_comments.fieldDefinition.label }}</h2>
+        </div>
+        <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading comments">{{ node.field_comments.fieldDefinition.label }} <span class="content-tabs--preview">({{ comment_count }})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_comments is defined and content.field_comments|render|striptags|trim %}
             {{ content.field_comments }}
@@ -238,8 +238,35 @@
             </p>
             {% endif %}
           </div>
-        </li>
-      </ul>
+        </div>
+        <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading button-action share">{{ node.field_comments.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section text-center-from-mobile">
+            <ul class="menu-social ">
+              <li class="facebook">
+                <a rel="nofollow" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.nice-villages.com{{ path('<current>')|url_encode }}">
+                  {{ 'Facebook'|t }}
+                </a>
+              </li>
+              <li class="twitter">
+                <a rel="nofollow" target="_blank" href="https://twitter.com/home?status=https%3A//www.nice-villages.com{{ path('<current>')|url_encode }}">
+                  {{ 'Twitter'|t }}
+                </a>
+              </li>
+              <li class="pinterest">
+                <a rel="nofollow" target="_blank" href="https://pinterest.com/pin/create/button/?url=&media=https%3A//www.nice-villages.com{{ path('<current>')|url_encode }}&description=">
+                  {{ 'Pinterest'|t }}
+                </a>
+              </li>
+              <li class="googleplus">
+                <a rel="nofollow" target="_blank" href="https://plus.google.com/share?url=https%3A//www.nice-villages.com{{ path('<current>')|url_encode }}">
+                  {{ 'Google plus'|t }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
     {% include '@nicevillages/parts/aside.html.twig' %}
   </div>
