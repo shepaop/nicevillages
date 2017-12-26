@@ -120,7 +120,7 @@
     <section class="two-cols--section">
       <div class="content-tab-system">
         <div class="content-tab-system--group">
-          <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }} <span class="content-tabs--preview">({{ content.field_points_of_interest['#items'].getValue()|length }})</span></h2>
+          <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }} <span class="content-tabs--preview">({% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}{{ content.field_points_of_interest['#items'].getValue()|length }}{% else %}0{% endif %})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
             <div class="map-pois">

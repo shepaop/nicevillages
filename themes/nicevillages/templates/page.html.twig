@@ -45,6 +45,9 @@
   {% include '@nicevillages/parts/mainmenu.html.twig' %}
   {% if page.content %}
   <div class="one-col">
+    {% if page['#title'] %}
+    <h1 class="h1 padder-bottom">{{ page['#title'] }}</h1>
+    {% endif %}
     {{ page.content }}
   </div>
   {% endif %}

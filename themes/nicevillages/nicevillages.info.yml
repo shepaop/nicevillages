@@ -22,6 +22,7 @@ regions:
   footer2: Footer2
   home_filters: Home Filters
   home_villages: Home Villages
+  system_messages: System messages
 
 libraries-override:
   core/html5shiv: false
