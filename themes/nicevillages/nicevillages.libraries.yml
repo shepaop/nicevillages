@@ -3,10 +3,12 @@ global_styling:
   css:
     theme:
       'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css': { external: true }
+      'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css': { external: true }
       css/styles.min.css: { media: all }
       css/print.min.css: { media: print }
   js:
     'https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js': { external: true }
+    'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js': { external: true }
     js/modernizr.min.js: {}
     js/functions.min.js: {}
   dependencies:
