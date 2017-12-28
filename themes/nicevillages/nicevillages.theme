@@ -64,6 +64,15 @@ function nicevillages_preprocess_node(&$variables) {
   }
 }
 
+function nicevillages_preprocess_field(&$variables, $hook) {
+  if($variables['element']['#field_name'] == 'field_amazon'){
+    $variables['amazon_code'] = array();
+    foreach($variables['items'] as $value){
+      $variables['amazon_code'][] = $value['content']['#context']['value'];
+    }
+  }
+}
+
 function nicevillages_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
   if ($node = \Drupal::request()->attributes->get('node')) {
