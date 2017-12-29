@@ -19,6 +19,12 @@
  * @see field.html.twig
  */
 #}
-{% for key, code in amazon_code %}
-{{ code|raw }}
-{% endfor %}
+{% if amazon_code %}
+  <ul class="book-list" style="display:none;">
+    {% for key, code in amazon_code %}
+    <li class="book-list--item">
+      {{ code|raw }}
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}
