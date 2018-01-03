@@ -34,6 +34,13 @@
     <p class="text-center-from-mobile">
     {{ 'Official website'|t }}: {{ content.field_official_website }}
     </p>
-    {{ content.description }}
+    {% if content.description is defined and content.description|render|striptags|trim %}
+      <div class="wysiwyg">
+        {{ content.description }}
+      </div>
+    {% endif %}
+    {% if content.field_amazon %}
+      {{ content.field_amazon }}
+    {% endif %}
   </div>
 </div>
