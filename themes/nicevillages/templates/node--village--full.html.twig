@@ -120,6 +120,25 @@
     <section class="two-cols--section">
       <div class="content-tab-system">
         <div class="content-tab-system--group">
+          <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
+          <div class="content-tab-system--section">
+            {% if content.body is defined and content.body|render|striptags|trim %}
+              <div class="wysiwyg" itemprop="description">
+                {{ content.body }}
+              </div>
+            {% else %}
+              <div class="wysiwyg">
+                <p class="text-center-from-mobile padder">
+                  {{ 'No description for the moment'|t }}
+                </p>
+              </div>
+              <p class="text-center-from-mobile">
+                <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add description'|t }}</a>
+              </p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="content-tab-system--group">
           <h2 class="content-tab-system--heading poi">{{ node.field_points_of_interest.fieldDefinition.label }} <span class="content-tabs--preview">({% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}{{ content.field_points_of_interest['#items'].getValue()|length }}{% else %}0{% endif %})</span></h2>
           <div class="content-tab-system--section">
             {% if content.field_points_of_interest is defined and content.field_points_of_interest|render|striptags|trim %}
@@ -147,25 +166,6 @@
             </div>
             <p class="text-center-from-mobile">
               <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add point of interest'|t }}</a>
-            </p>
-            {% endif %}
-          </div>
-        </div>
-        <div class="content-tab-system--group">
-          <h2 class="content-tab-system--heading info">{{ node.body.fieldDefinition.label }}</h2>
-          <div class="content-tab-system--section">
-            {% if content.body is defined and content.body|render|striptags|trim %}
-            <div class="wysiwyg" itemprop="description">
-              {{ content.body }}
-            </div>
-            {% else %}
-            <div class="wysiwyg">
-              <p class="text-center-from-mobile padder">
-                {{ 'No description for the moment'|t }}
-              </p>
-            </div>
-            <p class="text-center-from-mobile">
-              <a href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Add description'|t }}</a>
             </p>
             {% endif %}
           </div>
