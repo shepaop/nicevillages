@@ -74,8 +74,8 @@
 <div itemscope itemtype="http://schema.org/City">
   <div class="heading-village">
     <ul class="heading-village--actions">
-      <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute">{{ 'Edit'|t }}</a></li>
-      <li><a rel="nofollow" href="/node/{{ node.id }}/translations" class="button-contribute">{{ 'Translate'|t }}</a></li>
+      <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute small">{{ 'Edit'|t }}</a></li>
+      <li><a rel="nofollow" href="/node/{{ node.id }}/translations" class="button-contribute small">{{ 'Translate'|t }}</a></li>
     </ul>
     <div class="heading-village--picture" itemprop="image" itemscope  itemtype="http://schema.org/ImageObject">
       <meta itemprop="contentUrl" content="{{ file_url(node.field_pictures.entity.uri.value) }}" />
