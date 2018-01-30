@@ -73,6 +73,28 @@
 
 <div itemscope itemtype="http://schema.org/City">
   <div class="heading-village">
+    <div class="breadcrumbs" itemscope itemtype="http://schema.org/breadcrumb">
+      <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a itemprop="item" href="{{ path('<front>') }}">
+            <span itemprop="name">{{ 'Home'|t }}</span>
+          </a>
+          <meta itemprop=x"position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a itemprop="item" href="{{ path('view.villages.page_1') }}">
+            <span itemprop="name">{{ 'Villages'|t }}</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a itemprop="item" href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+            <span itemprop="name">{{ label }}</span>
+          </a>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </div>
     <ul class="heading-village--actions">
       <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute small">{{ 'Edit'|t }}</a></li>
       <li><a rel="nofollow" href="/node/{{ node.id }}/translations" class="button-contribute small">{{ 'Translate'|t }}</a></li>
