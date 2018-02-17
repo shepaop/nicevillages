@@ -290,6 +290,6 @@
         </div>
       </div>
     </section>
-    {% include '@nicevillages/parts/aside.html.twig' %}
+    {% include '@nicevillages/parts/aside.html.twig' with {'lat': node.field_latitude.value, 'lng': node.field_longitude.value} %}
   </div>
 </div>
