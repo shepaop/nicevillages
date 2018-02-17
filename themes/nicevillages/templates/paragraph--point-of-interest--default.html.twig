@@ -39,6 +39,9 @@
  */
 #}
 <div class="teaser-light" itemscope itemtype="http://schema.org/TouristAttraction">
+  <div class="teaser-light--picture">
+    {{ content.field_poi_image }}
+  </div>
   <div class="teaser-light--actions"></div>
   <h2 class="teaser-light--title" itemprop="name">{{ content.field_name }}</h2>
   <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
