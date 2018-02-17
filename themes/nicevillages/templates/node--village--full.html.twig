@@ -97,7 +97,6 @@
     </div>
     <ul class="heading-village--actions">
       <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute small">{{ 'Edit'|t }}</a></li>
-      <li><a rel="nofollow" href="/node/{{ node.id }}/translations" class="button-contribute small">{{ 'Translate'|t }}</a></li>
     </ul>
     <div class="heading-village--picture" itemprop="image" itemscope  itemtype="http://schema.org/ImageObject">
       <meta itemprop="contentUrl" content="{{ file_url(node.field_pictures.entity.uri.value) }}" />
@@ -133,9 +132,6 @@
           </p>
         </div>
       {% endif %}
-      <p class="heading-village--itinerary">
-        <a href="https://www.google.fr/maps/dir//{{ node.field_latitude.value }},{{ node.field_longitude.value }}/@{{ node.field_latitude.value }},{{ node.field_longitude.value }},12z" target="_blank" class="button-action itinerary">{{ 'Itinerary'|t }}</a>
-      </p>
     </div>
   </div>
   <div class="two-cols">
