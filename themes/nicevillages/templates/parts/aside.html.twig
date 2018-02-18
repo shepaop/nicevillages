@@ -1,7 +1,7 @@
 <aside class="two-cols--aside">
   {% if lat and lng %}
   <div class="localization-overview">
-    <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/static/url-http%3A%2F%2Fwww.nice-villages.com%2Fthemes%2Fnicevillages%2Fimg%2Ficon-map_plain.png({{ lng|raw }}%2C{{ lat|raw }})/{{ lng|raw }},{{ lat|raw }},5/400x300?access_token=pk.eyJ1Ijoic2hlcGFvcDA3IiwiYSI6ImNqNjE5NThxZzByOHUzM21yd2Vtdjd2NmUifQ.KWUdy8hQ5LcLZvrQeoj1Zw" alt="" class="localization-overview--map" />
+    <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/static/url-http%3A%2F%2Fwww.nice-villages.com%2Fthemes%2Fnicevillages%2Fimg%2Ficon-map_static.png({{ lng|raw }}%2C{{ lat|raw }})/{{ lng|raw }},{{ lat|raw }},5/400x300@2x?access_token=pk.eyJ1Ijoic2hlcGFvcDA3IiwiYSI6ImNqNjE5NThxZzByOHUzM21yd2Vtdjd2NmUifQ.KWUdy8hQ5LcLZvrQeoj1Zw" alt="" class="localization-overview--map" />
     <a href="https://www.google.fr/maps/dir//{{ lat|raw }},{{ lng|raw }}/@{{ lat|raw }},{{ lng|raw }},7z" target="_blank" class="button-action block itinerary">{{ 'Itinerary'|t }}</a>
   </div>
   {% endif %}
