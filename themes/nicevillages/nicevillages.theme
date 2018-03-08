@@ -9,6 +9,7 @@ function nicevillages_preprocess_table(&$variables) {
 
 function nicevillages_preprocess_html(&$variables) {
 
+  // Booking affiliation
   $bookingVerify = [
     '#tag' => 'meta',
     '#attributes' => [
@@ -19,6 +20,32 @@ function nicevillages_preprocess_html(&$variables) {
   $variables['page']['#attached']['html_head'][] = [
     $bookingVerify,
     'booking-verify',
+  ];
+
+  // Theme color
+  $themeColor = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'theme-color',
+      'content' => '#2f75bd',
+    ],
+  ];
+  $variables['page']['#attached']['html_head'][] = [
+    $themeColor,
+    'theme-color',
+  ];
+
+  // Manifest.json
+  $pwa = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'manifest',
+      'href' => '/manifest.json',
+    ],
+  ];
+  $variables['page']['#attached']['html_head'][] = [
+    $pwa,
+    'progressive-web-app',
   ];
 }
 
