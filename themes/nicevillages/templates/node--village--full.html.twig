@@ -71,23 +71,23 @@
  */
 #}
 
-<div itemscope itemtype="http://schema.org/City">
+<div itemscope itemtype="https://schema.org/City">
   <div class="heading-village">
-    <div class="breadcrumbs" itemscope itemtype="http://schema.org/breadcrumb">
-      <ol itemscope itemtype="http://schema.org/BreadcrumbList">
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class="breadcrumbs" itemscope itemtype="https://schema.org/breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a itemprop="item" href="{{ path('<front>') }}">
             <span itemprop="name">{{ 'Home'|t }}</span>
           </a>
           <meta itemprop=x"position" content="1" />
         </li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a itemprop="item" href="{{ path('view.villages.page_1') }}">
             <span itemprop="name">{{ 'Villages'|t }}</span>
           </a>
           <meta itemprop="position" content="2" />
         </li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a itemprop="item" href="{{ path('entity.node.canonical', {'node': node.id}) }}">
             <span itemprop="name">{{ label }}</span>
           </a>
@@ -98,7 +98,7 @@
     <ul class="heading-village--actions">
       <li><a rel="nofollow" href="{{ path('entity.node.edit_form', {'node': node.id}) }}" class="button-contribute small">{{ 'Edit'|t }}</a></li>
     </ul>
-    <div class="heading-village--picture" itemprop="image" itemscope  itemtype="http://schema.org/ImageObject">
+    <div class="heading-village--picture" itemprop="image" itemscope  itemtype="https://schema.org/ImageObject">
       <meta itemprop="contentUrl" content="{{ file_url(node.field_pictures.entity.uri.value) }}" />
       <ul>
         {% for key, picture in content.field_pictures if key|first != '#' %}
@@ -114,13 +114,13 @@
           <span itemprop="name">{{ label }}</span>&nbsp;{% if content.field_country %}<span class="heading-village--flag">{{ content.field_country }}</span>{% endif %}
         </h1>
       </div>
-      <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+      <div itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates">
         <meta itemprop="latitude" content="{{ node.field_latitude.value }}" />
         <meta itemprop="longitude" content="{{ node.field_longitude.value }}" />
       </div>
       {% if comment_count > 0 %}
         <div class="heading-village--rating" data-comment-count="{{ comment_count }}">
-          <p class="five-stars {{ note_css_class }}" itemprop="rating" itemscope itemtype="http://schema.org/AggregateRating">
+          <p class="five-stars {{ note_css_class }}" itemprop="rating" itemscope itemtype="https://schema.org/AggregateRating">
             <span class="five-stars--star"></span>
             <span class="five-stars--star"></span>
             <span class="five-stars--star"></span>
@@ -193,7 +193,7 @@
           <div class="content-tab-system--section">
             {% if content.field_usefull_links is defined and content.field_usefull_links|render|striptags|trim %}
             <div class="light-list">
-              <ul class="light-list--list" itemscope itemtype="http://schema.org/relatedLink">
+              <ul class="light-list--list" itemscope itemtype="https://schema.org/relatedLink">
                 {% for key, link in content.field_usefull_links if key|first != '#' %}
                 <li>
                   <div class="teaser-light">
@@ -220,7 +220,7 @@
           <div class="content-tab-system--section">
             {% if content.field_related_villages is defined and content.field_related_villages|render|striptags|trim %}
             <div class="list-villages smaller">
-              <ul class="list-villages--list" itemscope itemtype="http://schema.org/isRelatedTo">
+              <ul class="list-villages--list" itemscope itemtype="https://schema.org/isRelatedTo">
                 {% for key, village in content.field_related_villages if key|first != '#' %}
                 <li class="list-villages--item">
                   {{ village }}

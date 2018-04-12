@@ -38,7 +38,7 @@
  * @ingroup themeable
  */
 #}
-<div class="teaser-light" itemscope itemtype="http://schema.org/TouristAttraction">
+<div class="teaser-light" itemscope itemtype="https://schema.org/TouristAttraction">
   {% if content.field_poi_image is defined and content.field_poi_image|render|striptags|trim %}
   <div class="teaser-light--picture">
     {{ content.field_poi_image }}
@@ -46,7 +46,7 @@
   {% endif %}
   <div class="teaser-light--actions"></div>
   <h2 class="teaser-light--title" itemprop="name">{{ content.field_name }}</h2>
-  <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+  <div itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates">
     <meta itemprop="latitude" content="{{ paragraph.field_latitude.value }}" />
     <meta itemprop="longitude" content="{{ paragraph.field_longitude.value }}" />
   </div>
